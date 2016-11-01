@@ -7,6 +7,7 @@ set background=dark
 set backspace=indent,eol,start
 set encoding=utf-8
 set expandtab
+set hlsearch
 set incsearch
 set langmap=йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ\;qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>
 set laststatus=2
@@ -35,6 +36,8 @@ nmap = :tabnew<CR>
 map <space> <Plug>(easymotion-bd-w)
 nmap - :NERDTreeTabsToggle<CR>
 map <C-h> :noh<return>
+nnoremap * *<c-o>
+nnoremap # #<c-o>
 
 " Colorschemes
 colorscheme hybrid
