@@ -34,6 +34,7 @@ nmap <S-Tab> <C-W>W
 nmap = :tabnew<CR>
 map <space> <Plug>(easymotion-bd-w)
 nmap - :NERDTreeTabsToggle<CR>
+map <C-h> :noh<return>
 
 " Colorschemes
 colorscheme hybrid
@@ -42,8 +43,9 @@ colorscheme hybrid
 hi TabLine      ctermfg=Black  ctermbg=DarkGrey  cterm=None
 hi TabLineFill  ctermfg=None   ctermbg=None      cterm=None
 hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=None
+hi Search                      ctermbg=green     cterm=reverse
 
-" VIM-PLUG plugin manager (curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim)
+" VIM-PLUG plugin manager
 call plug#begin()
 Plug 'w0ng/vim-hybrid'                " colorscheme
 Plug 'ntpeters/vim-better-whitespace' " highlight trailing whitespaces
@@ -53,7 +55,7 @@ Plug 'scrooloose/nerdcommenter'       " comment code
 Plug 'mkitt/tabline.vim'              " better tabs
 Plug 'terryma/vim-multiple-cursors'   " multicursors
 Plug 'ervandew/supertab'              " tab completion
-Plug 'jistr/vim-nerdtree-tabs'        " have nerdtree for all tabs
+Plug 'jistr/vim-nerdtree-tabs'        " one nerdtree for all tabs
 call plug#end()
 
 " Plugin settings
