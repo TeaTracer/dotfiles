@@ -12,6 +12,8 @@ alias hgl='hg log -l 7 --graph'
 alias tmux='tmux -2'
 alias df='df -h'
 
+bindkey \^U backward-kill-line
+
 export EDITOR="vim"
 set default editor vim
 
