@@ -27,6 +27,12 @@ set virtualedit=all
 set wildmenu
 
 " Maps
+
+" hack for Alt-key mapping
+execute "set <M-l>=\<Esc>l"
+" map Alt-l
+imap <silent> <buffer> <M-l> <Plug>delimitMateJumpMany
+
 imap <Ins> <Esc>a
 imap <Backspace> <Esc>x<Ins>
 nmap <Backspace> <Esc>hx<Ins>
@@ -38,6 +44,7 @@ nmap - :NERDTreeTabsToggle<CR>
 map <C-h> :noh<return>
 nnoremap * *<c-o>
 nnoremap # #<c-o>
+imap , ,<Space>
 
 " Colorschemes
 colorscheme hybrid
@@ -59,8 +66,12 @@ Plug 'mkitt/tabline.vim'              " better tabs
 Plug 'terryma/vim-multiple-cursors'   " multicursors
 Plug 'ervandew/supertab'              " tab completion
 Plug 'jistr/vim-nerdtree-tabs'        " one nerdtree for all tabs
+Plug 'Raimondi/delimitMate'
 call plug#end()
 
 " Plugin settings
+let delimitMate_expand_cr = 1
+" let delimitMate_expand_space = 1
+let delimitMate_jump_expansion = 1
 let NERDSpaceDelims=1
 let NERDTreeWinPos="right"
