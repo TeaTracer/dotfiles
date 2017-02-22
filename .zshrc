@@ -1,31 +1,41 @@
-# If not running interactively, don't do anything
+### If not running interactively, don't do anything ###
 [[ $- != *i* ]] && return
+
+### Start X-server if virtual terminal number is 1 ###
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
-alias syu='sudo pacman -Syu'
+### aliases ###
+alias syu='sudo pacman -Syu' # update system
 alias v='vim'
-alias cd..='cd ..'
+alias y='yaourt' # archlinux aur package manager
+alias ls='ls --color=auto'
 alias l='ls -alh'
-alias mac='cat /sys/class/net/wls1/address'
-alias hgd='hg diff | colordiff | less'
-alias hgl='hg log -l 7 --graph'
-alias tmux='tmux -2'
-alias df='df -h'
+alias tmux='tmux -2' # tmux with 256 colors
+alias df='df -h' # disk space with MB
+alias p='while true; do ping -c1 ya.ru && break || sleep 1; done' # ping yandex until ok
+alias h='htop'
+alias extract='unp' # extract archives
+alias dna='cd /home/light/Git/dna-protein-complex/'
+alias aio='cd /home/light/vagrant/aio/'
+alias vpn='sudo openvpn /home/light/Scaleway/VPN/notebook7.ovpn'
 
 bindkey \^U backward-kill-line
 
+### vim is editor ###
 export EDITOR="vim"
 set default editor vim
 
-######### OH-MY-ZSH ##########
-
-# Path to your oh-my-zsh installation.
-export ZSH=/home/light/.oh-my-zsh
-
-ZSH_THEME="af-magic"
-
-plugins=(git zsh-syntax-highlighting)
-
-# User configuration
+# PATH configuration
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin"
+
+### Virtualenv wrapper (lazy startup) ###
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
+source /usr/bin/virtualenvwrapper_lazy.sh
+
+### OH-MY-ZSH ###
+export ZSH=/home/light/.oh-my-zsh
+ZSH_THEME="af-magic"
+plugins=(git zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
