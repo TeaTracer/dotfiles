@@ -4,7 +4,10 @@
 ### Start X-server if virtual terminal number is 1 ###
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
-### aliases ###
+### Functions ###
+remind () { nohup sh -c "(sleep $1 && notify-send $2) &" }
+
+### Aliases ###
 alias syu='sudo pacman -Syu' # update system
 alias v='vim'
 alias y='yaourt' # archlinux aur package manager
@@ -39,3 +42,5 @@ export ZSH=/home/light/.oh-my-zsh
 ZSH_THEME="af-magic"
 plugins=(git zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

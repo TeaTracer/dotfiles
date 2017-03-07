@@ -49,6 +49,7 @@ nnoremap # #<c-o>
 imap , ,<Space>
 map <C-j> :cn<CR>
 map <C-k> :cp<CR>
+map <F7> :ALEToggle<CR>
 
 set keywordprg=trans\ :ru
 
@@ -79,6 +80,8 @@ Plug 'Raimondi/delimitMate'           " quotes compliter
 Plug 'lilydjwg/python-syntax'         " maintained python syntax
 Plug 'w0rp/ale'                       " async linter
 Plug 'wincent/ferret'                 " async multi-file search
+Plug 'yanqd0/nginx.vim'               " nginx syntax
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   " fuzzy finder
 call plug#end()
 
 " Plugin settings
@@ -91,3 +94,8 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {'python': ['flake8'],}
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 0
+let g:ale_lint_on_text_changed = 0
+
+" Functions
