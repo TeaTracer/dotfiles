@@ -41,8 +41,8 @@ nmap <Backspace> <Esc>hx<Ins>
 nmap <Tab> <C-W>w
 nmap <S-Tab> <C-W>W
 nmap = :tabnew<CR>
-map <space> <Plug>(easymotion-bd-w)
-nmap - :NERDTreeToggle<CR>
+nmap <space> <Plug>(easymotion-overwin-w)
+nmap - :NERDTreeFind<CR>
 map <C-h> :noh<return>
 nnoremap * *<c-o>
 nnoremap # #<c-o>
@@ -75,27 +75,21 @@ Plug 'scrooloose/nerdcommenter'       " comment code
 Plug 'mkitt/tabline.vim'              " better tabs
 Plug 'terryma/vim-multiple-cursors'   " multicursors
 Plug 'ervandew/supertab'              " tab completion
-" Plug 'jistr/vim-nerdtree-tabs'        " one nerdtree for all tabs
 Plug 'Raimondi/delimitMate'           " quotes compliter
 Plug 'lilydjwg/python-syntax'         " maintained python syntax
-Plug 'w0rp/ale'                       " async linter
 Plug 'wincent/ferret'                 " async multi-file search
 Plug 'yanqd0/nginx.vim'               " nginx syntax
+Plug 'vim-airline/vim-airline'        " statusline
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   " fuzzy finder
 call plug#end()
 
 " Plugin settings
+let g:airline#extensions#tabline#enabled = 1
 let delimitMate_expand_cr = 1
 let delimitMate_jump_expansion = 1
 au FileType python let b:delimitMate_nesting_quotes = ['"']
 let NERDSpaceDelims=1
 let NERDTreeWinPos="right"
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_linters = {'python': ['flake8'],}
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_save = 0
-let g:ale_lint_on_text_changed = 0
 
-" Functions
+" Functions & commands
+command Trail :%s/\s\+$//e
