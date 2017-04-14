@@ -16,7 +16,6 @@ set nobackup
 set nocompatible
 set noswapfile
 set novisualbell
-" set number
 set shiftwidth=4
 set smartcase
 set softtabstop=4
@@ -49,7 +48,6 @@ nnoremap # #<c-o>
 imap , ,<Space>
 map <C-j> :cn<CR>
 map <C-k> :cp<CR>
-map <F7> :ALEToggle<CR>
 
 set keywordprg=trans\ :ru
 
@@ -67,7 +65,7 @@ hi ExtraWhitespace                ctermbg=red
 
 " VIM-PLUG plugin manager
 call plug#begin()
-Plug 'w0ng/vim-hybrid'                " colorscheme
+" Plug 'w0ng/vim-hybrid'                " colorscheme
 Plug 'ntpeters/vim-better-whitespace' " highlight trailing whitespaces
 Plug 'easymotion/vim-easymotion'      " jump to word
 Plug 'scrooloose/nerdtree'            " file explorer
@@ -77,10 +75,10 @@ Plug 'terryma/vim-multiple-cursors'   " multicursors
 Plug 'ervandew/supertab'              " tab completion
 Plug 'Raimondi/delimitMate'           " quotes compliter
 Plug 'lilydjwg/python-syntax'         " maintained python syntax
-Plug 'wincent/ferret'                 " async multi-file search
-Plug 'yanqd0/nginx.vim'               " nginx syntax
+" Plug 'wincent/ferret'                 " async multi-file search
+" Plug 'yanqd0/nginx.vim'               " nginx syntax
 Plug 'vim-airline/vim-airline'        " statusline
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   " fuzzy finder
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   " fuzzy finder
 call plug#end()
 
 " Plugin settings
