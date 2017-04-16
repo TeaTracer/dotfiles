@@ -135,7 +135,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 ############# custom shortcuts ##################
-bindsym $mod+Control+$up exec i3lock -c 000021
+bindsym $mod+Control+$up exec i3lock -i ~/.feh/wallpaper.png
 bindsym XF86AudioMute exec "amixer set Master toggle && killall -USR1 i3status"
 bindsym XF86AudioRaiseVolume exec "amixer set Master 5%+ && killall -USR1 i3status"
 bindsym XF86AudioLowerVolume exec "amixer set Master 5%- && killall -USR1 i3status"
