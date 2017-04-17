@@ -65,3 +65,8 @@ debian-keyring pkg-mozilla-archive-keyrin
 # Slim dm
 slim
 # /usr/share/slim/themes/default/background.jpg
+###########################################################
+# sudo ifup wlan0
+# iwconfig
+# wpa_cli
+wicd
