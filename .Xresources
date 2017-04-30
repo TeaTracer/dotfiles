@@ -370,3 +370,22 @@ xterm.color255: #CC7F99
 ! *xterm*color13: #bb88dd
 ! *xterm*color14: #4eb4fa
 ! *xterm*color15: #d0d0d0
+
+xterm*background: #0E181A
+xterm*foreground: #CA8D67
+xterm*color0: #D8A396
+xterm*color1: #494A3E
+xterm*color2: #9C5033
+xterm*color3: #B04F41
+xterm*color4: #A95E4F
+xterm*color5: #6D826F
+xterm*color6: #CA8D67
+xterm*color7: #D8A396
+xterm*color8: #666666
+xterm*color9: #494A3E
+xterm*color10: #9C5033
+xterm*color11: #B04F41
+xterm*color12: #A95E4F
+xterm*color13: #6D826F
+xterm*color14: #CA8D67
+xterm*color15: #D8A396
