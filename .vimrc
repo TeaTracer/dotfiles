@@ -43,8 +43,8 @@ nmap = :tabnew<CR>
 nmap <space> <Plug>(easymotion-overwin-w)
 nmap - :NERDTreeFind<CR>
 map <C-h> :noh<return>
-nnoremap * *<c-o>
-nnoremap # #<c-o>
+nnoremap * *``
+nnoremap # #``
 imap , ,<Space>
 map <C-j> :cn<CR>
 map <C-k> :cp<CR>
@@ -90,4 +90,4 @@ let NERDSpaceDelims=1
 let NERDTreeWinPos="right"
 
 " Functions & commands
-command Trail :%s/\s\+$//e
+command! Trail :%s/\s\+$//e
