@@ -26,6 +26,20 @@ set virtualedit=all
 set wildmenu
 set pastetoggle=<F2>
 
+" Avoids updating the screen before commands are completed
+set lazyredraw
+
+" Remap navigation commands to center view on cursor using zz
+nnoremap <C-U> 11kzz
+nnoremap <C-D> 11jzz
+nnoremap j jzz
+nnoremap k kzz
+nnoremap # #zz
+nnoremap * *zz
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap G Gzz
+
 " Maps
 
 " Bug: causes Escape+l work wrong in Insert mode
