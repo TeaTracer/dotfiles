@@ -8,14 +8,17 @@
 ### Start X-server if virtual terminal number is 1 ###
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
-### vim is editor ###
+parse_git_branch() {
+         git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+
+}
+export PS1="\u \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
+
 export EDITOR="vim"
 
-### aliases ###
-
-## Arch
-# alias syu='sudo pacman -Syu' # update system
-# alias y='yaourt' # archlinux aur package manager
+les() {
+    bash -c "pylint $1 --output-format=colorized | less -R"
+}
 
 alias v='vim'
 alias ls='ls --color=auto'
@@ -24,9 +27,33 @@ alias tmux='tmux -2' # tmux with 256 colors
 alias df='df -h' # disk space with MB
 alias p='while true; do ping -c1 ya.ru && break || sleep 1; done' # ping yandex until ok
 alias h='htop'
+alias apti='sudo apt install'
+alias apts='apt search'
+alias aptu='sudo apt update'
+alias aptU='sudo apt upgrade'
+alias aptuU='sudo apt update && sudo apt upgrade'
+alias gitd='git diff HEAD^ HEAD'
+alias gd='git diff'
+alias gitf='git ls-tree --full-tree -r HEAD'
+alias vg='vagrant'
+alias mountme='sudo mount /dev/sdb1 /home/light/USB -o gid=1000,uid=1000'
+alias umountme='sudo umount /dev/sdb1'
+alias soundup='amixer set Master 5%+ && killall -USR1 i3status'
+alias sounddown='amixer set Master 5%- && killall -USR1 i3status'
+alias soundmute='amixer set Master toggle && killall -USR1 i3status'
+alias netstat="netstat -lnptux"
+alias rm="echo \"Use trash-put instead.\"; false"
 
-### Virtualenv wrapper (lazy startup) ###
-# export WORKON_HOME=$HOME/.virtualenvs
-# export PROJECT_HOME=$HOME/Devel
-# export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
-# source /usr/bin/virtualenvwrapper_lazy.sh
+export GOPATH="/home/light/Go"
+
+# Settings
+HISTSIZE=-1
+HISTFILESIZE=-1
+export HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
+
+if [ -f /etc/bash_completion ]; then
+     . /etc/bash_completion
+fi
+
+export PATH=$PATH:/usr/local/go/bin
