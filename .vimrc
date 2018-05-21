@@ -4,17 +4,6 @@ syntax on
 filetype plugin on
 let mapleader = ","
 
-" Colorscheme
-colorscheme hybrid
-
-" Highlights
-hi TabLine         ctermfg=Black  ctermbg=DarkGrey  cterm=None
-hi TabLineFill     ctermfg=None   ctermbg=None      cterm=None
-hi TabLineSel      ctermfg=White  ctermbg=DarkBlue  cterm=None
-hi Search                         ctermbg=green     cterm=reverse
-hi SignColumn                     ctermbg=black
-hi ExtraWhitespace                ctermbg=red
-
 " Set settings
 set background=dark
 set backspace=indent,eol,start
@@ -71,9 +60,11 @@ nmap - :NERDTreeFind<CR>
 map <C-h> :noh<return>
 nnoremap # #``
 nnoremap * *``
-imap , ,<Space>
+" imap , ,<Space>
 map <C-j> :cn<CR>
 map <C-k> :cp<CR>
+" nmap <leader>f :Denite file/rec<CR>
+" nmap <leader>p :Denite grep<CR>
 
 " Golang
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
@@ -109,15 +100,20 @@ Plug 'tpope/vim-fugitive'             " GIT
 Plug 'w0rp/ale'                       " async checkers and linters
 Plug 'Chiel92/vim-autoformat'         " yapf autoformat
 Plug 'mbbill/undotree'                " history branches, time-traveling
+Plug 'svsudhir/textile.vim'           " Redmine Textile highlight
+Plug 'Xuyuanp/nerdtree-git-plugin'    " Nerdtree + git
+" Plug 'Shougo/denite.nvim'             " unite interface
+Plug 'ekalinin/Dockerfile.vim'        " docker syntax
 call plug#end()
 
 " Plugin settings
 let g:airline#extensions#tabline#enabled = 1
-let delimitMate_expand_cr = 1
-let delimitMate_jump_expansion = 1
-au FileType python let b:delimitMate_nesting_quotes = ['"']
-let NERDSpaceDelims=1
-let NERDTreeWinPos="right"
+let NERDTreeWinPos = "right"
+let NERDSpaceDelims = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeQuitOnOpen = 1
+let NERDTreeAutoDeleteBuffer = 1
 
 " ALE plugin settings
 let g:pymode_lint_checkers = ['pylint']
@@ -125,7 +121,23 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_save = 0
 let g:ale_lint_on_enter = 0
 let g:ale_lint_delay = 200
-let g:ale_enable = 1
+let g:ale_enable = 0
+
+" Denite
+" call denite#custom#var('file/rec', 'command', ['pt', '--follow', '--hidden', '--nocolor', '--nogroup', '-g=', ''])
+
+" call denite#custom#var('grep', 'command', ['pt'])
+" call denite#custom#var('grep', 'default_opts',
+        " \ ['--nogroup', '--nocolor', '--smart-case'])
+" call denite#custom#var('grep', 'recursive_opts', [])
+" call denite#custom#var('grep', 'pattern_opt', [])
+" call denite#custom#var('grep', 'separator', ['--'])
+" call denite#custom#var('grep', 'final_opts', [])
+
+" call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+" call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+" call denite#custom#option('_',  'highlight_mode_insert',  'Search')
+
 
 " My functions & commands
 
@@ -134,3 +146,14 @@ command! Trail :%s/\s\+$//e
 
 " format pretty JSON
 command! FormatJSON %!python -m json.tool
+
+" Colorscheme
+colorscheme hybrid
+
+" Highlights
+hi TabLine         ctermfg=Black  ctermbg=DarkGrey  cterm=None
+hi TabLineFill     ctermfg=None   ctermbg=None      cterm=None
+hi TabLineSel      ctermfg=White  ctermbg=DarkBlue  cterm=None
+hi Search                         ctermbg=green     cterm=reverse
+hi SignColumn                     ctermbg=black
+hi ExtraWhitespace                ctermbg=red
