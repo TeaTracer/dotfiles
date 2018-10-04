@@ -1,7 +1,3 @@
-#
-# ~/.bashrc
-#
-
 ### If not running interactively, don't do anything ###
 [[ $- != *i* ]] && return
 
@@ -12,12 +8,45 @@ parse_git_branch() {
          git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 
 }
+
 export PS1="\u \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 export EDITOR="vim"
 
+which slit &>/dev/null || export PAGER="slit"
+
 les() {
     bash -c "pylint $1 --output-format=colorized | less -R"
+}
+
+gfd() {
+    ls -alh /proc/$1/fd
+}
+
+dockx() {
+    docker exec -it $1 /bin/bash
+}
+
+dockr() {
+    docker run -it $1 /bin/bash
+}
+
+docc() {
+    docker ps | awk -v z=$(($1+1)) 'NR==z {print $1}'
+}
+
+docci (){
+    NUMBER=$1
+    CONTAINER=$(docc $NUMBER)
+    dockx $CONTAINER
+}
+
+whoad () {
+    whois $1 | grep addr
+}
+
+dic () {
+    dict -d fd-eng-rus $1 | tail -n +6
 }
 
 alias v='vim'
@@ -34,15 +63,17 @@ alias aptU='sudo apt upgrade'
 alias aptuU='sudo apt update && sudo apt upgrade'
 alias gitd='git diff HEAD^ HEAD'
 alias gd='git diff'
+alias gdc='git diff --cached'
 alias gitf='git ls-tree --full-tree -r HEAD'
 alias vg='vagrant'
 alias mountme='sudo mount /dev/sdb1 /home/light/USB -o gid=1000,uid=1000'
 alias umountme='sudo umount /dev/sdb1'
-alias soundup='amixer set Master 5%+ && killall -USR1 i3status'
-alias sounddown='amixer set Master 5%- && killall -USR1 i3status'
-alias soundmute='amixer set Master toggle && killall -USR1 i3status'
 alias netstat="netstat -lnptux"
 alias rm="echo \"Use trash-put instead.\"; false"
+alias lynx="lynx -vikeys"
+alias docki="docker images -f 'dangling=false'"
+alias xcopy="xclip -selection clipboard"
+alias vimrc="vim ~/.vimrc"
 
 export GOPATH="/home/light/Go"
 
@@ -56,4 +87,4 @@ if [ -f /etc/bash_completion ]; then
      . /etc/bash_completion
 fi
 
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
