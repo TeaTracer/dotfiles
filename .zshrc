@@ -13,7 +13,7 @@ alias ls='ls --color=auto'
 alias l='ls -alh'
 alias tmux='tmux -2' # tmux with 256 colors
 alias df='df -h' # disk space with MB
-alias p='while true; do ping -c1 ya.ru && break || sleep 1; done' # ping yandex until ok
+alias p='while true; do ping -c1 ya.ru && break || sleep 1; done' # ping yandex until ok 
 alias h='htop'
 alias extract='unp' # extract archives
 alias apti='sudo apt install'
