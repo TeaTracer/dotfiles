@@ -17,6 +17,7 @@ set keywordprg=trans\ :ru
 set langmap=йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ\;qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>
 set laststatus=2
 set lazyredraw
+set nomodeline
 set nobackup
 set nocompatible
 set noerrorbells visualbell t_vb=
@@ -28,14 +29,13 @@ set smartcase
 set softtabstop=4
 set t_Co=256
 set tabstop=4
+set nowrap
 set termencoding=utf-8
 set virtualedit=all
 set wildmenu
 set wildmode=list:longest,full
-" Avoids updating the screen before commands are completed
-" set scrolloff=999
-"
-nnoremap <F7> :UndotreeToggle<cr>
+set autowrite
+
 
 " Remap navigation commands to center view on cursor using zz
 nnoremap <C-U> 11kzz
@@ -60,11 +60,8 @@ nmap - :NERDTreeFind<CR>
 map <C-h> :noh<return>
 nnoremap # #``
 nnoremap * *``
-" imap , ,<Space>
 map <C-j> :cn<CR>
 map <C-k> :cp<CR>
-" nmap <leader>f :Denite file/rec<CR>
-" nmap <leader>p :Denite grep<CR>
 
 " Golang
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
@@ -72,6 +69,7 @@ autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
 autocmd FileType go nmap <leader>i  <Plug>(go-imports)
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+autocmd FileType go au BufWritePre <buffer> GoFmt
 
 " Python
 " <F2> paste toggle
@@ -84,26 +82,31 @@ autocmd FileType python nmap <F9> :Autoformat<CR>
 
 " VIM-PLUG plugin manager
 call plug#begin()
-Plug 'ntpeters/vim-better-whitespace' " highlight trailing whitespaces
-Plug 'easymotion/vim-easymotion'      " jump to word
-Plug 'scrooloose/nerdtree'            " file explorer
-Plug 'scrooloose/nerdcommenter'       " comment code
-Plug 'mkitt/tabline.vim'              " better tabs
-Plug 'terryma/vim-multiple-cursors'   " multicursors
-Plug 'ervandew/supertab'              " tab completion
-Plug 'lilydjwg/python-syntax'         " maintained python syntax
-Plug 'vim-airline/vim-airline'        " statusline
-Plug 'fatih/vim-go'                   " vim golang
-Plug 'majutsushi/tagbar'              " tagbar
-Plug 'jiangmiao/auto-pairs'           " auto pair brackets, quotes
-Plug 'tpope/vim-fugitive'             " GIT
-Plug 'w0rp/ale'                       " async checkers and linters
 Plug 'Chiel92/vim-autoformat'         " yapf autoformat
+Plug 'ervandew/supertab'              " tab completion
+Plug 'majutsushi/tagbar'              " tagbar
 Plug 'mbbill/undotree'                " history branches, time-traveling
-Plug 'svsudhir/textile.vim'           " Redmine Textile highlight
+Plug 'mkitt/tabline.vim'              " better tabs
+Plug 'scrooloose/nerdcommenter'       " comment code
+Plug 'scrooloose/nerdtree'            " file explorer
+Plug 'tpope/vim-fugitive'             " GIT
+Plug 'vim-airline/vim-airline'        " statusline
+" Plug 'w0rp/ale'                       " async checkers and linters
 Plug 'Xuyuanp/nerdtree-git-plugin'    " Nerdtree + git
-" Plug 'Shougo/denite.nvim'             " unite interface
+Plug 'junegunn/goyo.vim'              " free writing
+Plug 'junegunn/gv.vim'                " git commit browser
+
+Plug 'easymotion/vim-easymotion'      " jump to word
+Plug 'terryma/vim-multiple-cursors'   " multicursors
+
+
+Plug 'fatih/vim-go'                   " vim golang
+Plug 'svsudhir/textile.vim'           " Redmine Textile highlight
+Plug 'ntpeters/vim-better-whitespace' " highlight trailing whitespaces
+Plug 'lilydjwg/python-syntax'         " maintained python syntax
 Plug 'ekalinin/Dockerfile.vim'        " docker syntax
+Plug 'andymass/vim-matchup'           " match brackets and %
+Plug 'nazo/pt.vim'                    " the platinum searcherer
 call plug#end()
 
 " Plugin settings
@@ -114,30 +117,22 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeNodeDelimiter = "\t"
+let NERDTreeIgnore = ['\.pyc$']
 
 " ALE plugin settings
 let g:pymode_lint_checkers = ['pylint']
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_save = 0
-let g:ale_lint_on_enter = 0
-let g:ale_lint_delay = 200
-let g:ale_enable = 0
 
-" Denite
-" call denite#custom#var('file/rec', 'command', ['pt', '--follow', '--hidden', '--nocolor', '--nogroup', '-g=', ''])
+let g:go_fmt_command = "gofmt"
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_gocode_autobuild = 0
 
-" call denite#custom#var('grep', 'command', ['pt'])
-" call denite#custom#var('grep', 'default_opts',
-        " \ ['--nogroup', '--nocolor', '--smart-case'])
-" call denite#custom#var('grep', 'recursive_opts', [])
-" call denite#custom#var('grep', 'pattern_opt', [])
-" call denite#custom#var('grep', 'separator', ['--'])
-" call denite#custom#var('grep', 'final_opts', [])
-
-" call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-" call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-" call denite#custom#option('_',  'highlight_mode_insert',  'Search')
-
+" vim-matchup
+let g:matchup_matchparen_enabled = 0
 
 " My functions & commands
 
@@ -146,6 +141,8 @@ command! Trail :%s/\s\+$//e
 
 " format pretty JSON
 command! FormatJSON %!python -m json.tool
+
+command W w !sudo tee % > /dev/null
 
 " Colorscheme
 colorscheme hybrid
